@@ -13,7 +13,7 @@ public class User {
 	private String username;
 	private String password;
 	private String firstName;
-	private String lasteName;
+	private String lastName;
 	public int getId() {
 		return id;
 	}
@@ -38,10 +38,10 @@ public class User {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLasteName() {
-		return lasteName;
+	public String getlastName() {
+		return lastName;
 	}
-	public void setLasteName(String lasteName) {
-		this.lasteName = lasteName;
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
 	}
 }

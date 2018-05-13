@@ -16,7 +16,7 @@
         $updateBtn = $("#updateBtn")
             .click(updateUser);
 
-        findUserById(52);
+        findUserById(32);
     }
 
     function updateUser() {
@@ -27,11 +27,12 @@
         };
 
         userService
-            .updateUser(52, user)
+            .updateUser(32, user)
             .then(success);
     }
 
     function success(response) {
+        console.log(response)
         if(response === null) {
             alert('unable to update')
         } else {

@@ -56,6 +56,12 @@
 
             clone.find('.username')
                 .html(user.username);
+            clone.find('.firstName')
+                .html(user.firstName);
+            clone.find('.lastName')
+                .html(user.lastName);
+            clone.find('.role')
+                .html(user.role);
             tbody.append(clone);
         }
     }

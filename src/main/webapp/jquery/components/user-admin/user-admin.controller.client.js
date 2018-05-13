@@ -22,8 +22,6 @@
     }
 
     function createUser() {
-        console.log('createUser');
-
         var username = $('#usernameFld').val();
         var password = $('#passwordFld').val();
         var firstName = $('#firstNameFld').val();

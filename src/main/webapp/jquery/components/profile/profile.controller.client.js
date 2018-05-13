@@ -32,7 +32,6 @@
     }
 
     function success(response) {
-        console.log(response)
         if(response === null) {
             alert('unable to update')
         } else {
@@ -47,7 +46,6 @@
     }
 
     function renderUser(user) {
-        console.log(user);
         $staticEmail.val(user.username);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);

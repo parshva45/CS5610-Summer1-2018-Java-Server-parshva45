@@ -4,6 +4,7 @@
     var $staticEmail;
     var $firstName;
     var $lastName;
+    var $role;
     var $updateBtn;
     var userService = new UserServiceClient();
 
@@ -11,20 +12,22 @@
         $staticEmail = $("#staticEmail");
         $firstName = $("#firstName");
         $lastName = $("#lastName");
+        $role = $('#role');
         $updateBtn = $("#updateBtn")
             .click(updateUser);
 
-        findUserById(12);
+        findUserById(52);
     }
 
     function updateUser() {
         var user = {
             firstName: $firstName.val(),
-            lastName: $lastName.val()
+            lastName: $lastName.val(),
+            role: $role.val()
         };
 
         userService
-            .updateUser(12, user)
+            .updateUser(52, user)
             .then(success);
     }
 
@@ -47,5 +50,6 @@
         $staticEmail.val(user.username);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);
+        $role.val(user.role);
     }
 })();

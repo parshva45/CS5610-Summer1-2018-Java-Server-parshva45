@@ -8,7 +8,7 @@
     var userService = new UserServiceClient()
     var updateId;
     var $usernameFld;
-    var $password;
+    var $passwordFld;
     var $firstNameFld;
     var $lastNameFld;
     var $roleFld;
@@ -20,7 +20,7 @@
         $('#createUser').click(createUser);
         //$('.wbdv-update').click(updateUser);
         $usernameFld = $('#usernameFld');
-        $password = $('#passwordFld');
+        $passwordFld = $('#passwordFld');
         $firstNameFld = $('#firstNameFld');
         $lastNameFld = $('#lastNameFld');
         $roleFld = $('#roleFld');
@@ -38,7 +38,7 @@
 
     function createUser() {
         var username = $usernameFld.val();
-        var password = $password.val();
+        var password = $passwordFld.val();
         var firstName = $firstNameFld.val();
         var lastName = $lastNameFld.val();
         var role = $roleFld.val();
@@ -125,6 +125,7 @@
         } else {
             findAllUsers();
             $usernameFld.val('');
+            $passwordFld.val('');
             $firstNameFld.val('');
             $lastNameFld.val('');
             $roleFld.val('Student');

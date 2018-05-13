@@ -29,30 +29,32 @@
       <th></th>
     </tr>
     <tr>
-      <th><input id="usernameFld" class="form-control custom" placeholder="jdoe"/></th>
-      <th><input id="passwordFld" class="form-control custom" type="password"/></th>
-      <th><input id="firstNameFld" class="form-control custom" placeholder="John"/></th>
-      <th><input id="lastNameFld" class="form-control custom" placeholder="Doe"/></th>
+      <th><input id="usernameFld" class="form-control" placeholder="jdoe"/></th>
+      <th><input id="passwordFld" class="form-control" type="password"/></th>
+      <th><input id="firstNameFld" class="form-control" placeholder="John"/></th>
+      <th><input id="lastNameFld" class="form-control" placeholder="Doe"/></th>
       <th>
         <select id="roleFld" class="form-control">
           <option>Faculty</option>
           <option selected>Student</option>
         </select>
       </th>
-      <th><button id="createUser" class="btn btn-success fa fa-plus"></button></th>
+      <th><button id="createUser" class="btn btn-success fa fa-plus"></button>
+          <button id="updateBtn" class="btn btn-primary fa fa-check"></button>
+      </th>
     </tr>
     </thead>
     <tbody>
-    <tr class="template">
-      <td class="username"></td>
+    <tr class="wbdv-template">
+      <td class="wbdv-username"></td>
       <td>****</td>
-      <td class="firstName"></td>
-      <td class="lastName"></td>
-      <td class="role"></td>
+      <td class="wbdv-firstName"></td>
+      <td class="wbdv-lastName"></td>
+      <td class="wbdv-role"></td>
 
       <th>
-        <button class="edit btn btn-primary fa fa-pencil"></button>
-        <button class="delete btn btn-danger fa fa-trash"></button>
+        <button class="wbdv-delete btn btn-danger fa fa-trash"></button>
+        <button class="wbdv-edit btn btn-primary fa fa-pencil"></button>
       </th>
     </tr>
     </tbody>

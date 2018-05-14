@@ -12,12 +12,15 @@
     var $firstNameFld;
     var $lastNameFld;
     var $roleFld;
+    var $createBtn;
     var $updateBtn;
+    var $cancelBtn;
 
     function main() {
         tbody = $('tbody');
         template = $('.wbdv-template');
-        $('#createUser').click(createUser);
+        $createBtn = $("#createBtn")
+            .click(createUser);
         $usernameFld = $('#usernameFld');
         $passwordFld = $('#passwordFld');
         $firstNameFld = $('#firstNameFld');
@@ -25,11 +28,16 @@
         $roleFld = $('#roleFld');
         $updateBtn = $("#updateBtn")
             .click(updateUser);
+        $cancelBtn = $("#cancelBtn")
+            .click(findAllUsers);
 
         findAllUsers();
     }
 
     function findAllUsers() {
+        $createBtn.show();
+        $updateBtn.hide();
+        $cancelBtn.hide();
         userService
             .findAllUsers()
             .then(renderUsers);
@@ -63,7 +71,7 @@
             clone.attr('id', user.id);
 
             clone.find('.wbdv-delete').click(deleteUser);
-            clone.find('.wbdv-edit').click(selectUser);
+            clone.find('.wbdv-select').click(selectUser);
 
             clone.find('.wbdv-username')
                 .html(user.username);
@@ -90,8 +98,8 @@
     }
 
     function selectUser(event) {
-        var editBtn = $(event.currentTarget);
-        var $tr = editBtn
+        var selectBtn = $(event.currentTarget);
+        var $tr = selectBtn
             .parent()
             .parent();
         updateId = $tr.attr('id');
@@ -108,6 +116,11 @@
         $firstNameFld.val(user.getFirstName());
         $lastNameFld.val(user.getLastName());
         $roleFld.val(user.getRole());
+        $updateBtn.show();
+        $cancelBtn.show();
+        $createBtn.hide();
+        $usernameFld.prop('disabled', true);
+        $passwordFld.prop('disabled', true);
     }
 
     function updateUser(event) {
@@ -127,6 +140,11 @@
             alert('unable to update')
         } else {
             findAllUsers();
+            $updateBtn.hide();
+            $cancelBtn.hide();
+            $createBtn.show();
+            $usernameFld.prop('disabled', false);
+            $passwordFld.prop('disabled', false);
         }
     }
 

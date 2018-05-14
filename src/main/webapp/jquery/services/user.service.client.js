@@ -6,9 +6,12 @@ function UserServiceClient() {
     this.updateUser = updateUser;
     this.register = register;
     this.login = login;
+    // this.updateProfile = updateProfile;
+    this.logout = logout;
     this.url = '/api/user';
     this.login_url = '/api/login';
     this.register_url = '/api/register';
+    this.profile_url = '/api/profile';
     var self = this;
 
     function login(user) {
@@ -21,6 +24,10 @@ function UserServiceClient() {
         }).then(function (response) {
             return response.json();
         });
+    }
+
+    function logout() {
+        window.location.href = "../login/login.template.client.html";
     }
 
     function updateUser(user) {

@@ -6,6 +6,7 @@
     var $lastNameFld;
     var $roleFld;
     var $updateBtn;
+    var $logoutBtn;
     var userService = new UserServiceClient();
 
     function init() {
@@ -15,6 +16,8 @@
         $roleFld = $('#roleFld');
         $updateBtn = $("#updateBtn")
             .click(updateUser);
+        $logoutBtn = $("#logoutBtn")
+            .click(logoutUser);
         findUserById(getUrlVars()["userId"]);
     }
 
@@ -63,4 +66,10 @@
         $lastNameFld.val(user.lastName);
         $roleFld.val(user.role);
     }
+
+    function logoutUser() {
+        userService
+            .logout();
+    }
+
 })();

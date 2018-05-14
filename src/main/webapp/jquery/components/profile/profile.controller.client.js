@@ -1,33 +1,45 @@
 (function() {
     $(init);
 
-    var $staticEmail;
-    var $firstName;
-    var $lastName;
-    var $role;
+    var $usernameFld;
+    var $firstNameFld;
+    var $lastNameFld;
+    var $roleFld;
     var $updateBtn;
     var userService = new UserServiceClient();
 
     function init() {
-        $staticEmail = $("#staticEmail");
-        $firstName = $("#firstName");
-        $lastName = $("#lastName");
-        $role = $('#role');
+        $usernameFld = $("#usernameFld");
+        $firstNameFld = $("#firstNameFld");
+        $lastNameFld = $("#lastNameFld");
+        $roleFld = $('#roleFld');
         $updateBtn = $("#updateBtn")
             .click(updateUser);
+        findUserById(getUrlVars()["userId"]);
+    }
 
-        findUserById(32);
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
     }
 
     function updateUser() {
-        var user = {
-            firstName: $firstName.val(),
-            lastName: $lastName.val(),
-            role: $role.val()
-        };
+
+        var user = new User();
+        user.setUsername($usernameFld.val());
+        user.setFirstName($firstNameFld.val());
+        user.setLastName($lastNameFld.val());
+        user.setRole($roleFld.val());
 
         userService
-            .updateUser(32, user)
+            .updateUser(user)
             .then(success);
     }
 
@@ -46,9 +58,9 @@
     }
 
     function renderUser(user) {
-        $staticEmail.val(user.username);
-        $firstName.val(user.firstName);
-        $lastName.val(user.lastName);
-        $role.val(user.role);
+        $usernameFld.val(user.username);
+        $firstNameFld.val(user.firstName);
+        $lastNameFld.val(user.lastName);
+        $roleFld.val(user.role);
     }
 })();

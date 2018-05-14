@@ -35,6 +35,8 @@
     }
 
     function findAllUsers() {
+        $usernameFld.prop('disabled', false);
+        $passwordFld.prop('disabled', false);
         $createBtn.show();
         $updateBtn.hide();
         $cancelBtn.hide();

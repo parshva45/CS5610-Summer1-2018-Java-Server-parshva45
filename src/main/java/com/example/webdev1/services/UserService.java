@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdev1.repositories.UserRepository;
@@ -36,16 +37,26 @@ public class UserService {
 		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
 	}
 	
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user) {
+		List<User> userList = findUserByUsername(user.getUsername());
+		return (userList.isEmpty()) ? createUser(user) : null;
+	}
+	
+	public List<User> findUserByUsername(String username){
+		return (List<User>) repository.findUserByUsername(username);
+	}
+	
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {
 		return (List<User>) repository.findAll();
 	}
 	
-	@PutMapping("/api/user/{userId}")
-	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
-		Optional<User> data = repository.findById(userId);
-		if(data.isPresent()) {
-			User user = data.get();
+	@PutMapping("/api/user")
+	public User updateUser(@RequestBody User newUser) {
+		List<User> data = findUserByUsername(newUser.getUsername());
+		if(!data.isEmpty()) {
+			User user = data.get(0);
 			user.setFirstName(newUser.getFirstName());
 			user.setLastName(newUser.getLastName());
 			user.setRole(newUser.getRole());

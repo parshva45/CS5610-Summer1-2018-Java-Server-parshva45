@@ -63,7 +63,7 @@
             clone.attr('id', user.id);
 
             clone.find('.wbdv-delete').click(deleteUser);
-            clone.find('.wbdv-edit').click(editUser);
+            clone.find('.wbdv-edit').click(selectUser);
 
             clone.find('.wbdv-username')
                 .html(user.username);
@@ -89,20 +89,25 @@
             .then(findAllUsers);
     }
 
-    function editUser(event) {
+    function selectUser(event) {
         var editBtn = $(event.currentTarget);
         var $tr = editBtn
             .parent()
             .parent();
         updateId = $tr.attr('id');
         var username = $tr.find('.wbdv-username').text();
-        $usernameFld.val(username);
         var firstName = $tr.find('.wbdv-firstName').text();
-        $firstNameFld.val(firstName);
         var lastName = $tr.find('.wbdv-lastName').text();
-        $lastNameFld.val(lastName);
         var role = $tr.find('.wbdv-role').text();
-        $roleFld.val(role);
+        var user = new User(username,'',firstName,lastName,role);
+        renderUser(user);
+    }
+
+    function renderUser(user){
+        $usernameFld.val(user.getUsername());
+        $firstNameFld.val(user.getFirstName());
+        $lastNameFld.val(user.getLastName());
+        $roleFld.val(user.getRole());
     }
 
     function updateUser(event) {

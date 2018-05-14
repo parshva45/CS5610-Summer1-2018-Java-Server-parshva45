@@ -5,10 +5,8 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.login = login;
-    this.url =
-        '/api/user';
-    this.login_url =
-        '/api/login';
+    this.url = '/api/user';
+    this.login_url = '/api/login';
     var self = this;
 
     function login(username, password) {

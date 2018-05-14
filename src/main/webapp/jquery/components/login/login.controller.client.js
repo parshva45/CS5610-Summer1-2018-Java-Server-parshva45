@@ -6,31 +6,29 @@
     var userService = new UserServiceClient()
     var $usernameFld;
     var $passwordFld;
-    var $verifyPasswordFld;
-    var $registerBtn;
+    var $loginBtn;
 
     function main() {
-        $registerBtn = $("#registerBtn")
-            .click(register);
+        $loginBtn = $("#loginBtn")
+            .click(login);
         $usernameFld = $('#usernameFld');
         $passwordFld = $('#passwordFld');
-        $verifyPasswordFld = $('#verifyPasswordFld');
     }
 
-    function register() {
+    function login() {
         var username = $usernameFld.val();
         var password = $passwordFld.val();
 
         var user = new User(username,password);
 
         userService
-            .register(user)
+            .login(user)
             .then(success);
     }
 
     function success(response) {
         if(response === null) {
-            alert('unable to register')
+            alert('unable to log in')
         } else {
             window.location.href = "../profile/profile.template.client.html?userId="+response.id;
         }

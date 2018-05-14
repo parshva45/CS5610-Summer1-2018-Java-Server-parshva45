@@ -11,13 +11,15 @@ function UserServiceClient() {
     this.register_url = '/api/register';
     var self = this;
 
-    function login(username, password) {
+    function login(user) {
         return fetch(self.login_url, {
             method: 'post',
-            body: JSON.stringify({username:username, password: password}),
+            body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
             }
+        }).then(function (response) {
+            return response.json();
         });
     }
 

@@ -33,8 +33,13 @@ public class UserService {
 	}
 	
 	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user) {
-		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+	public User login(@RequestBody User user) {
+		List<User> userList = findUserByCredentials(user.getUsername(), user.getPassword());
+		return (!userList.isEmpty()) ? userList.get(0) : null;
+	}
+	
+	public List<User> findUserByCredentials(String username, String password){
+		return (List<User>) repository.findUserByCredentials(username, password);
 	}
 	
 	@PostMapping("/api/register")

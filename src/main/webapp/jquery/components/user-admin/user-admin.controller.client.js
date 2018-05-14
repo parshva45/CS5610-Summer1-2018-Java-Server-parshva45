@@ -18,7 +18,6 @@
         tbody = $('tbody');
         template = $('.wbdv-template');
         $('#createUser').click(createUser);
-        //$('.wbdv-update').click(updateUser);
         $usernameFld = $('#usernameFld');
         $passwordFld = $('#passwordFld');
         $firstNameFld = $('#firstNameFld');
@@ -43,13 +42,7 @@
         var lastName = $lastNameFld.val();
         var role = $roleFld.val();
 
-        var user = {
-            username: username,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            role: role
-        };
+        var user = new User(username,password,firstName,lastName,role);
 
         userService
             .createUser(user)
@@ -58,6 +51,11 @@
 
     function renderUsers(users) {
         tbody.empty();
+        $usernameFld.val('');
+        $passwordFld.val('');
+        $firstNameFld.val('');
+        $lastNameFld.val('');
+        $roleFld.val('Student');
         for(var i=0; i<users.length; i++) {
             var user = users[i];
             var clone = template.clone();
@@ -108,11 +106,11 @@
     }
 
     function updateUser(event) {
-        var user = {
-            firstName: $firstNameFld.val(),
-            lastName: $lastNameFld.val(),
-            role: $roleFld.val()
-        };
+
+        var user = new User();
+        user.setFirstName($firstNameFld.val());
+        user.setLastName($lastNameFld.val());
+        user.setRole($roleFld.val());
 
         userService
             .updateUser(updateId, user)
@@ -124,11 +122,6 @@
             alert('unable to update')
         } else {
             findAllUsers();
-            $usernameFld.val('');
-            $passwordFld.val('');
-            $firstNameFld.val('');
-            $lastNameFld.val('');
-            $roleFld.val('Student');
         }
     }
 

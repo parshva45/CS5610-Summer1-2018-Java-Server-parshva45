@@ -107,7 +107,11 @@
         $phoneFld.val(user.phone);
         $emailFld.val(user.email);
         $roleFld.val(user.role);
-        $dateOfBirthFld.val(user.dateOfBirth.substr(0,10));
+        var dob = user.dateOfBirth;
+        if(dob != '' && dob != null)
+            $dateOfBirthFld.val(dob.substr(0,10));
+        else
+            $dateOfBirthFld.val('');
     }
 
     function logoutUser() {

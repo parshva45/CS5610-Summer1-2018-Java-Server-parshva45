@@ -56,7 +56,6 @@
         user.setEmail($emailFld.val());
         user.setRole($roleFld.val());
         user.setDateOfBirth($dateOfBirthFld.val());
-        console.log(JSON.stringify(user));
 
         userService
             .updateProfile(user)

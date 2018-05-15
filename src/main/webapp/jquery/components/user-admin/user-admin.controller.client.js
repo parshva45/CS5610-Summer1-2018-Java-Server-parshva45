@@ -29,17 +29,26 @@
         $updateBtn = $("#updateBtn")
             .click(updateProfile);
         $cancelBtn = $("#cancelBtn")
-            .click(findAllUsers);
-
+            .click(resetFieldsButtons);
+        resetFieldsButtons();
         findAllUsers();
     }
 
-    function findAllUsers() {
+    function resetFieldsButtons(){
         $usernameFld.prop('disabled', false);
         $passwordFld.prop('disabled', false);
         $createBtn.show();
         $updateBtn.hide();
         $cancelBtn.hide();
+        $usernameFld.val('');
+        $passwordFld.val('');
+        $firstNameFld.val('');
+        $lastNameFld.val('');
+        $roleFld.val('Student');
+    }
+
+    function findAllUsers() {
+        resetFieldsButtons();
         userService
             .findAllUsers()
             .then(renderUsers);
@@ -61,11 +70,6 @@
 
     function renderUsers(users) {
         tbody.empty();
-        $usernameFld.val('');
-        $passwordFld.val('');
-        $firstNameFld.val('');
-        $lastNameFld.val('');
-        $roleFld.val('Student');
         for(var i=0; i<users.length; i++) {
             var user = users[i];
             var clone = template.clone();
@@ -128,12 +132,13 @@
     function updateProfile(event) {
 
         var user = new User();
+        user.setUsername($usernameFld.val());
         user.setFirstName($firstNameFld.val());
         user.setLastName($lastNameFld.val());
         user.setRole($roleFld.val());
 
         userService
-            .updateProfile(updateId, user)
+            .updateProfile(user)
             .then(success);
     }
 
@@ -142,11 +147,6 @@
             alert('unable to update')
         } else {
             findAllUsers();
-            $updateBtn.hide();
-            $cancelBtn.hide();
-            $createBtn.show();
-            $usernameFld.prop('disabled', false);
-            $passwordFld.prop('disabled', false);
         }
     }
 

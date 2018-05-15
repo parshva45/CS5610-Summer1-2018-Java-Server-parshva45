@@ -3,10 +3,9 @@ function UserServiceClient() {
     this.findAllUsers = findAllUsers;
     this.deleteUser = deleteUser;
     this.findUserById = findUserById;
-    this.updateUser = updateUser;
     this.register = register;
     this.login = login;
-    // this.updateProfile = updateProfile;
+    this.updateProfile = updateProfile;
     this.logout = logout;
     this.url = '/api/user';
     this.login_url = '/api/login';
@@ -30,8 +29,8 @@ function UserServiceClient() {
         window.location.href = "../login/login.template.client.html";
     }
 
-    function updateUser(user) {
-        return fetch(self.url, {
+    function updateProfile(user) {
+        return fetch(self.profile_url, {
             method: 'put',
             body: JSON.stringify(user),
             headers: {

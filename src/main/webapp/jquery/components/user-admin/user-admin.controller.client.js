@@ -27,7 +27,7 @@
         $lastNameFld = $('#lastNameFld');
         $roleFld = $('#roleFld');
         $updateBtn = $("#updateBtn")
-            .click(updateUser);
+            .click(updateProfile);
         $cancelBtn = $("#cancelBtn")
             .click(findAllUsers);
 
@@ -125,7 +125,7 @@
         $passwordFld.prop('disabled', true);
     }
 
-    function updateUser(event) {
+    function updateProfile(event) {
 
         var user = new User();
         user.setFirstName($firstNameFld.val());
@@ -133,7 +133,7 @@
         user.setRole($roleFld.val());
 
         userService
-            .updateUser(updateId, user)
+            .updateProfile(updateId, user)
             .then(success);
     }
 

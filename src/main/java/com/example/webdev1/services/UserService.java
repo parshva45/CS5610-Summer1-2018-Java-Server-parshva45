@@ -57,14 +57,17 @@ public class UserService {
 		return (List<User>) repository.findAll();
 	}
 	
-	@PutMapping("/api/user")
-	public User updateUser(@RequestBody User newUser) {
+	@PutMapping("/api/profile")
+	public User updateProfile(@RequestBody User newUser) {
 		List<User> data = findUserByUsername(newUser.getUsername());
 		if(!data.isEmpty()) {
 			User user = data.get(0);
 			user.setFirstName(newUser.getFirstName());
 			user.setLastName(newUser.getLastName());
+			user.setPhone(newUser.getPhone());
+			user.setEmail(newUser.getEmail());
 			user.setRole(newUser.getRole());
+			user.setDateOfBirth(newUser.getDateOfBirth());
 			repository.save(user);
 			return user;
 		}

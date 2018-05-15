@@ -4,7 +4,10 @@
     var $usernameFld;
     var $firstNameFld;
     var $lastNameFld;
+    var $phoneFld;
+    var $emailFld;
     var $roleFld;
+    var $dateOfBirthFld;
     var $updateBtn;
     var $logoutBtn;
     var userService = new UserServiceClient();
@@ -13,12 +16,22 @@
         $usernameFld = $("#usernameFld");
         $firstNameFld = $("#firstNameFld");
         $lastNameFld = $("#lastNameFld");
+        $phoneFld = $("#phoneFld");
+        $emailFld = $("#emailFld");
         $roleFld = $('#roleFld');
+        $dateOfBirthFld = $('#dateOfBirthFld');
         $updateBtn = $("#updateBtn")
-            .click(updateUser);
+            .click(updateProfile);
         $logoutBtn = $("#logoutBtn")
             .click(logoutUser);
         findUserById(getUrlVars()["userId"]);
+
+        $('#dateOfBirthFld')
+            .datepicker({
+                autoclose: true,
+                format: 'mm/dd/yyyy'
+            });
+
     }
 
     function getUrlVars()
@@ -33,16 +46,20 @@
         return vars;
     }
 
-    function updateUser() {
+    function updateProfile() {
 
         var user = new User();
         user.setUsername($usernameFld.val());
         user.setFirstName($firstNameFld.val());
         user.setLastName($lastNameFld.val());
+        user.setPhone($phoneFld.val());
+        user.setEmail($emailFld.val());
         user.setRole($roleFld.val());
+        user.setDateOfBirth($dateOfBirthFld.val());
+        console.log(JSON.stringify(user));
 
         userService
-            .updateUser(user)
+            .updateProfile(user)
             .then(success);
     }
 
@@ -64,7 +81,10 @@
         $usernameFld.val(user.username);
         $firstNameFld.val(user.firstName);
         $lastNameFld.val(user.lastName);
+        $phoneFld.val(user.phone);
+        $emailFld.val(user.email);
         $roleFld.val(user.role);
+        $dateOfBirthFld.val(user.dateOfBirth);
     }
 
     function logoutUser() {

@@ -29,9 +29,10 @@
         $('#dateOfBirthFld')
             .datepicker({
                 autoclose: true,
-                format: 'mm/dd/yyyy'
+                format: 'yyyy-mm-dd',
+                endDate: new Date(),
+                todayHighlight: true
             });
-
     }
 
     function getUrlVars()
@@ -56,6 +57,7 @@
         user.setEmail($emailFld.val());
         user.setRole($roleFld.val());
         user.setDateOfBirth($dateOfBirthFld.val());
+        console.log(JSON.stringify(user));
 
         userService
             .updateProfile(user)
@@ -83,7 +85,7 @@
         $phoneFld.val(user.phone);
         $emailFld.val(user.email);
         $roleFld.val(user.role);
-        $dateOfBirthFld.val(user.dateOfBirth);
+        $dateOfBirthFld.val(user.dateOfBirth.substr(0,10));
     }
 
     function logoutUser() {

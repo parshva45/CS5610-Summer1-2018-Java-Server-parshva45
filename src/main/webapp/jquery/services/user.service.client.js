@@ -21,7 +21,14 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         }).then(function (response) {
-            return response.json();
+            return response.text()
+        }).then(function (response) {
+            if(response.length == 0){
+                return null;
+            }
+            else{
+                return JSON.parse(response);
+            }
         });
     }
 

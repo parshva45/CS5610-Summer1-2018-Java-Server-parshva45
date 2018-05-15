@@ -10,6 +10,10 @@
     var $dateOfBirthFld;
     var $updateBtn;
     var $logoutBtn;
+    var $successAlert;
+    var $successClose;
+    var $dangerAlert;
+    var $dangerClose;
     var userService = new UserServiceClient();
 
     function init() {
@@ -24,7 +28,15 @@
             .click(updateProfile);
         $logoutBtn = $("#logoutBtn")
             .click(logoutUser);
+        $successAlert = $(".alert-success");
+        $successClose = $(".successClose")
+            .click(successHide);
+        $dangerAlert = $(".alert-danger");
+        $dangerClose = $(".dangerClose")
+            .click(dangerHide);
         findUserById(getUrlVars()["userId"]);
+        successHide();
+        dangerHide();
 
         $('#dateOfBirthFld')
             .datepicker({
@@ -33,6 +45,14 @@
                 endDate: new Date(),
                 todayHighlight: true
             });
+    }
+
+    function successHide() {
+        $successAlert.hide();
+    }
+
+    function dangerHide() {
+        $dangerAlert.hide();
     }
 
     function getUrlVars()
@@ -49,6 +69,9 @@
 
     function updateProfile() {
 
+        successHide();
+        dangerHide();
+
         var user = new User();
         user.setUsername($usernameFld.val());
         user.setFirstName($firstNameFld.val());
@@ -57,7 +80,6 @@
         user.setEmail($emailFld.val());
         user.setRole($roleFld.val());
         user.setDateOfBirth($dateOfBirthFld.val());
-        console.log(JSON.stringify(user));
 
         userService
             .updateProfile(user)
@@ -66,9 +88,9 @@
 
     function success(response) {
         if(response === null) {
-            alert('unable to update')
+            $dangerAlert.show();
         } else {
-            alert('success');
+            $successAlert.show();
         }
     }
 

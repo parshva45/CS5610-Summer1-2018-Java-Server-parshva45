@@ -109,7 +109,7 @@
         $roleFld.val(user.role);
         var dob = user.dateOfBirth;
         if(dob != '' && dob != null)
-            $dateOfBirthFld.val(dob.substr(0,10));
+            $dateOfBirthFld.val(dob.substr(0,dob.indexOf('T')));
         else
             $dateOfBirthFld.val('');
     }

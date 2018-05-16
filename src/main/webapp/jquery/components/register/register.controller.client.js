@@ -62,7 +62,7 @@
 
     function success(response) {
         if(response === null) {
-            $message.text("This username is already taken");
+            $message.text("This username has already been taken");
             $dangerAlert.show();
         } else {
             window.location.href = "../profile/profile.template.client.html?userId="+response.id;

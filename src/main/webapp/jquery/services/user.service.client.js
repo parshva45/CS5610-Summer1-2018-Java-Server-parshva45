@@ -23,10 +23,10 @@ function UserServiceClient() {
         }).then(function (response) {
             return response.text()
         }).then(function (response) {
-            if(response.length == 0){
+            if (response.length == 0) {
                 return null;
             }
-            else{
+            else {
                 return JSON.parse(response);
             }
         });
@@ -44,14 +44,14 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         })
-            .then(function(response){
+            .then(function (response) {
                 return response.json();
             });
     }
 
     function findUserById(userId) {
         return fetch(self.url + '/' + userId)
-            .then(function(response){
+            .then(function (response) {
                 return response.json();
             });
     }
@@ -87,7 +87,14 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         }).then(function (response) {
-            return response.json();
+            return response.text()
+        }).then(function (response) {
+            if (response.length == 0) {
+                return null;
+            }
+            else {
+                return JSON.parse(response);
+            }
         });
     }
 }

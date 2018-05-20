@@ -1,7 +1,5 @@
 package com.example.webdev1.models;
 
-import static org.assertj.core.api.Assertions.allOf;
-
 import java.util.Date;
 import java.util.List;
 

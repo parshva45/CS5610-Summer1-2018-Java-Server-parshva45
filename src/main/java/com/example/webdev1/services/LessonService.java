@@ -26,7 +26,7 @@ public class LessonService {
 	@Autowired
 	LessonRepository lessonRepository;
 	
-	@PostMapping("/api/module/{moduleId}/lesson")
+	@PostMapping("/api/course/{courseId}/module/{moduleId}/lesson")
 	public Lesson createLesson(
 			@PathVariable("moduleId") int moduleId,
 			@RequestBody Lesson newLesson) {
@@ -40,7 +40,7 @@ public class LessonService {
 		return null;		
 	}
 	
-	@GetMapping("/api/module/{moduleId}/lesson")
+	@GetMapping("/api/course/{courseId}/module/{moduleId}/lesson")
 	public List<Lesson> findAllLessonsForModule(
 			@PathVariable("moduleId") int moduleId) {
 		Optional<Module> data = moduleRepository.findById(moduleId);

@@ -1,12 +1,16 @@
 package com.example.webdev1.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Lesson {
 	@Id
@@ -16,6 +20,8 @@ public class Lesson {
 	@ManyToOne
 	@JsonIgnore
 	private Module module;
+	@OneToMany(mappedBy="lesson", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	private List<Widget> widgets;
 	public int getId() {
 		return id;
 	}
@@ -33,5 +39,11 @@ public class Lesson {
 	}
 	public void setModule(Module module) {
 		this.module = module;
+	}
+	public List<Widget> getWidgets() {
+		return widgets;
+	}
+	public void setWidgets(List<Widget> widgets) {
+		this.widgets = widgets;
 	}
 }

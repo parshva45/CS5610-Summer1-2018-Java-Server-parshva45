@@ -14,6 +14,11 @@ public class Widget {
 	private int id;
 	private String name;
 	private int position;
+	private String text;
+	private String className;
+	private String style;
+	private String width;
+	private String height;
 	private String type;
 	private int size;
 	private String href;
@@ -83,5 +88,35 @@ public class Widget {
 	}
 	public void setLesson(Lesson lesson) {
 		this.lesson = lesson;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getWidth() {
+		return width;
+	}
+	public void setWidth(String width) {
+		this.width = width;
+	}
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
 	}
 }

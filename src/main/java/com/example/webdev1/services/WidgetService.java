@@ -37,7 +37,7 @@ public class WidgetService {
 			newWidget.setLesson(lesson);
 			return widgetRepository.save(newWidget);
 		}
-		return null;		
+		return null;
 	}
 	
 	@GetMapping("/api/lesson/{lessonId}/widget")

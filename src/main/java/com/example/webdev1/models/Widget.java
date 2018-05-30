@@ -19,7 +19,7 @@ public class Widget {
 	private String style;
 	private String width;
 	private String height;
-	private String type;
+	private String widgetType;
 	private int size;
 	private String href;
 	private String src;
@@ -47,11 +47,11 @@ public class Widget {
 	public void setPosition(int position) {
 		this.position = position;
 	}
-	public String getType() {
-		return type;
+	public String getWidgetType() {
+		return widgetType;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setWidgetType(String widgetType) {
+		this.widgetType = widgetType;
 	}
 	public int getSize() {
 		return size;

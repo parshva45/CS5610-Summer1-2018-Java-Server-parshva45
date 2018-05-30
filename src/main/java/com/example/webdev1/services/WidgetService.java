@@ -27,15 +27,21 @@ public class WidgetService {
 	LessonRepository lessonRepository;
 	
 	@PostMapping("/api/lesson/{lessonId}/widget")
-	public Widget createWidget(
+	public List<Widget> saveWidgets(
 			@PathVariable("lessonId") int lessonId,
-			@RequestBody Widget newWidget) {
+			@RequestBody List<Widget> newWidgetList) {
 		Optional<Lesson> data = lessonRepository.findById(lessonId);
 		
 		if(data.isPresent()) {
 			Lesson lesson = data.get();
-			newWidget.setLesson(lesson);
-			return widgetRepository.save(newWidget);
+			for(Widget widget:lesson.getWidgets()) {
+				widgetRepository.delete(widget);
+			}
+			for(Widget widget:newWidgetList) {
+				widget.setLesson(lesson);
+				widgetRepository.save(widget);
+			}
+			return newWidgetList;
 		}
 		return null;
 	}

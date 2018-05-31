@@ -39,7 +39,6 @@ public class WidgetService {
 			}
 			for(Widget widget:newWidgetList) {
 				widget.setLesson(lesson);
-				widgetRepository.save(widget);
 			}
 			return newWidgetList;
 		}

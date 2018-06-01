@@ -21,6 +21,7 @@ public class Module {
 	@JsonIgnore
 	private Course course;
 	@OneToMany(mappedBy="module", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@JsonIgnore
 	private List<Lesson> lessons;
 	public int getId() {
 		return id;

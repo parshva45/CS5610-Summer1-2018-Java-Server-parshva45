@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Course {
 	@Id
@@ -32,6 +34,7 @@ public class Course {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modified;
 	@OneToMany(mappedBy="course", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@JsonIgnore
 	private List<Module> modules;
 	public int getId() {
 		return id;

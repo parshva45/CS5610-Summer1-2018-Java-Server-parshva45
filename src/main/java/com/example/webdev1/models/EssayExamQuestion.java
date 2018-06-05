@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "JOINED_ESSAY_QUESTION")
+@Table(name = "ESSAY_QUESTION")
 public class EssayExamQuestion
 	extends BaseExamQuestion {
 

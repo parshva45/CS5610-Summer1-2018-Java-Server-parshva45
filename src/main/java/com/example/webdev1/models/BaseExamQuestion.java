@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "JOINED_BASE_QUESTION")
+@Table(name = "BASE_QUESTION")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class BaseExamQuestion {
 	@Id

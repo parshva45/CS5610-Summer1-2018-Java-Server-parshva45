@@ -1,9 +1,14 @@
 package com.example.webdev1.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-public class MultipleChoiceQuestion extends Question {
+@Table(name = "JOINED_TRUE_OR_FALSE_QUESTION")
+public class MultipleChoiceExamQuestion
+	extends BaseExamQuestion {
+	@Column(name = "CORRECT_OPTION", nullable = false)
 	private String options;
 	private int correctOption;
 	public String getOptions() {

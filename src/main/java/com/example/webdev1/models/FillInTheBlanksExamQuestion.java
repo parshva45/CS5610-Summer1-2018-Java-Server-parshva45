@@ -1,13 +1,13 @@
-package com.example.webdev1.models.exam.joined;
+package com.example.webdev1.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "JOINED_FILL_IN_THE_BLANK_QUESTION")
-public class FillInTheBlankQuestionJoined
-	extends BaseQuestionJoined {
+@Table(name = "JOINED_TRUE_OR_FALSE_QUESTION")
+public class FillInTheBlanksExamQuestion
+	extends BaseExamQuestion {
 	@Column(name = "VARIABLES", nullable = false)
 	private String variables;
 	public String getVariables() {

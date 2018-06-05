@@ -1,4 +1,4 @@
-package com.example.webdev1.models.exam.joined;
+package com.example.webdev1.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "JOINED_BASE_QUESTION")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class BaseQuestionJoined {
+public class BaseExamQuestion {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

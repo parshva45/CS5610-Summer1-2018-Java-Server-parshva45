@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdev1.models.Exam;
-import com.example.webdev1.models.MultipleChoiceQuestion;
-import com.example.webdev1.models.Question;
-import com.example.webdev1.models.TrueFalseQuestion;
+import com.example.webdev1.models.MultipleChoiceExamQuestion;
+import com.example.webdev1.models.BaseExamQuestion;
+import com.example.webdev1.models.TrueOrFalseExamQuestion;
 import com.example.webdev1.repositories.ExamRepository;
-import com.example.webdev1.repositories.MultipleChoicesQuestionRepository;
-import com.example.webdev1.repositories.TrueFalseQuestionRepository;
+import com.example.webdev1.repositories.MultipleChoiceExamQuestionRepository;
+import com.example.webdev1.repositories.TrueOrFalseExamQuestionRepository;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -23,13 +23,13 @@ public class ExamService {
 	@Autowired
 	ExamRepository examRepository;
 	@Autowired
-	TrueFalseQuestionRepository trueFalseRepository;
+	TrueOrFalseExamQuestionRepository trueFalseRepository;
 	@Autowired
-	MultipleChoicesQuestionRepository mutiRepo;
+	MultipleChoiceExamQuestionRepository mutiRepo;
 
 	@GetMapping("/api/multi/{questionId}")
-	public MultipleChoiceQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<MultipleChoiceQuestion> optional = mutiRepo.findById(questionId);
+	public MultipleChoiceExamQuestion findMultiQuestionById(@PathVariable("questionId") int questionId) {
+		Optional<MultipleChoiceExamQuestion> optional = mutiRepo.findById(questionId);
 		if(optional.isPresent()) {
 			return optional.get();
 		}
@@ -37,8 +37,8 @@ public class ExamService {
 	}
 
 	@GetMapping("/api/truefalse/{questionId}")
-	public TrueFalseQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
-		Optional<TrueFalseQuestion> optional = trueFalseRepository.findById(questionId);
+	public TrueOrFalseExamQuestion findTrueFalseQuestionById(@PathVariable("questionId") int questionId) {
+		Optional<TrueOrFalseExamQuestion> optional = trueFalseRepository.findById(questionId);
 		if(optional.isPresent()) {
 			return optional.get();
 		}
@@ -46,11 +46,11 @@ public class ExamService {
 	}
 	
 	@GetMapping("/api/exam/{examId}/question")
-	public List<Question> findAllQuestionsForExam(@PathVariable("examId") int examId) {
+	public List<BaseExamQuestion> findAllQuestionsForExam(@PathVariable("examId") int examId) {
 		Optional<Exam> optionalExam = examRepository.findById(examId);
 		if(optionalExam.isPresent()) {
 			Exam exam = optionalExam.get();
-			List<Question> questions = exam.getQuestions();
+			List<BaseExamQuestion> questions = exam.getQuestions();
 			return questions;
 		}
 		return null;

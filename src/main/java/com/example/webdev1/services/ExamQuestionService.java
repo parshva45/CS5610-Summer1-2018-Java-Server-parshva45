@@ -16,7 +16,6 @@ public class ExamQuestionService {
 	public BaseExamQuestion createBaseQuestion() {
 		BaseExamQuestion q = new BaseExamQuestion();
 		q.setDescription("descriptions 123");
-		q.setInstructions("instructions 123");
 		q.setPoints(123);
 		q.setTitle("title 123");
 		return baseRepo.save(q);

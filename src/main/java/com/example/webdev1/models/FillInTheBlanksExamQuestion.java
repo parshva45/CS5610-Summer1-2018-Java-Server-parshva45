@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "JOINED_TRUE_OR_FALSE_QUESTION")
+@Table(name = "JOINED_FILL_IN_THE_BLANKS_QUESTION")
 public class FillInTheBlanksExamQuestion
 	extends BaseExamQuestion {
 	@Column(name = "VARIABLES", nullable = false)

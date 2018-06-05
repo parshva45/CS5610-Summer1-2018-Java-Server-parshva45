@@ -6,7 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "JOINED_BASE_QUESTION")
@@ -15,15 +18,23 @@ public class BaseExamQuestion {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@ManyToOne
+	@JsonIgnore
+	private Exam exam;
 	private int points;
 	private String title;
 	private String description;
-	private String instructions;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public Exam getExam() {
+		return exam;
+	}
+	public void setExam(Exam exam) {
+		this.exam = exam;
 	}
 	public int getPoints() {
 		return points;
@@ -42,11 +53,5 @@ public class BaseExamQuestion {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public String getInstructions() {
-		return instructions;
-	}
-	public void setInstructions(String instructions) {
-		this.instructions = instructions;
 	}
 }

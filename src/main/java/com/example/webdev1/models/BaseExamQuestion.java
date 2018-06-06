@@ -23,7 +23,10 @@ public class BaseExamQuestion {
 	private Exam exam;
 	private int points;
 	private String title;
+	private String subtitle;
 	private String description;
+	private String questionType;
+	
 	public int getId() {
 		return id;
 	}
@@ -53,5 +56,17 @@ public class BaseExamQuestion {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getSubtitle() {
+		return subtitle;
+	}
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
+	public String getQuestionType() {
+		return questionType;
+	}
+	public void setQuestionType(String questionType) {
+		this.questionType = questionType;
 	}
 }

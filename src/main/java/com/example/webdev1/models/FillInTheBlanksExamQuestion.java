@@ -1,6 +1,5 @@
 package com.example.webdev1.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -8,12 +7,20 @@ import javax.persistence.Table;
 @Table(name = "FILL_IN_THE_BLANKS_QUESTION")
 public class FillInTheBlanksExamQuestion
 	extends BaseExamQuestion {
-	@Column(name = "VARIABLES", nullable = false)
+
 	private String variables;
+	private String values;
+	
 	public String getVariables() {
 		return variables;
 	}
 	public void setVariables(String variables) {
 		this.variables = variables;
+	}
+	public String getValues() {
+		return values;
+	}
+	public void setValues(String values) {
+		this.values = values;
 	}
 }

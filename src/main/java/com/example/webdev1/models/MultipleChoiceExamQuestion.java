@@ -1,6 +1,5 @@
 package com.example.webdev1.models;
 
-// import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -8,7 +7,7 @@ import javax.persistence.Table;
 @Table(name = "MULTIPLE_CHOICE_QUESTION")
 public class MultipleChoiceExamQuestion
 	extends BaseExamQuestion {
-	// @Column(name = "CORRECT_OPTION", nullable = false)
+
 	private String options;
 	private int correctOption;
 	public String getOptions() {

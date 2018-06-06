@@ -53,14 +53,23 @@ public class AssignmentService {
 		 return null;
 	}
 	
+	@GetMapping("/api/assignment/{assignmentId}")
+	public Assignment getAssignmentById(@PathVariable("assignmentId") int assignmentId) {
+		Optional<Assignment> data=assignmentRepository.findById(assignmentId);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		return null;
+	}
+	
 	@PostMapping("api/lesson/{lessonId}/assignment")
 	public Assignment addAssignment(@PathVariable("lessonId") int lessonId, 
-			@RequestBody Assignment assignmentWidget) {
+			@RequestBody Assignment newAssignment) {
 		 Optional<Lesson> data = lessonRepository.findById(lessonId);
 		 if(data.isPresent()) {
 			 Lesson lesson = data.get();
-			 assignmentWidget.setLesson(lesson);
-			 return assignmentRepository.save(assignmentWidget);
+			 newAssignment.setLesson(lesson);
+			 return assignmentRepository.save(newAssignment);
 		 }
 		 return null;
 	}

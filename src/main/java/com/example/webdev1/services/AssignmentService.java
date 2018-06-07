@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -77,6 +78,23 @@ public class AssignmentService {
 	@DeleteMapping("api/assignment/{assignmentId}")
 	public void deleteAssignment(@PathVariable("assignmentId") int assignmentId) {
 		assignmentRepository.deleteById(assignmentId);
+	}
+	
+	@PutMapping("api/assignment/{assignmentId}")
+	public Assignment updateAssignment(@PathVariable("assignmentId") int assignmentId,
+			@RequestBody Assignment newAssignment) {
+		Optional<Assignment> data = assignmentRepository.findById(assignmentId);
+		if(data.isPresent()) {
+			Assignment assignWidget=data.get();
+			assignWidget.setTitle(newAssignment.getTitle());
+			assignWidget.setDescription(newAssignment.getDescription());
+			assignWidget.setPoints(newAssignment.getPoints());
+			assignWidget.setText(newAssignment.getText());
+			assignWidget.setWidgetType(newAssignment.getWidgetType());
+			assignmentRepository.save(assignWidget);
+			return assignWidget;
+		}
+		return null;
 	}
 	
 }

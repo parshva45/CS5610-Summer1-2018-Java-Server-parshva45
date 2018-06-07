@@ -1,23 +1,30 @@
 package com.example.webdev1.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.webdev1.models.BaseExamQuestion;
-import com.example.webdev1.repositories.BaseExamQuestionRepository;
+import com.example.webdev1.models.Exam;
+import com.example.webdev1.repositories.ExamRepository;
 
 @RestController
 public class ExamQuestionService {
-	@Autowired
-	BaseExamQuestionRepository baseRepo;
 	
-	@GetMapping("/api/inheritance/joined/base")
-	public BaseExamQuestion createBaseQuestion() {
-		BaseExamQuestion q = new BaseExamQuestion();
-		q.setDescription("descriptions 123");
-		q.setPoints(123);
-		q.setTitle("title 123");
-		return baseRepo.save(q);
+	@Autowired
+	ExamRepository examRepository;
+	
+	@GetMapping("/api/exam/{examId}/question")
+	public List<BaseExamQuestion> getQuestionByExamId(@PathVariable("examId") int examId){
+		Optional<Exam> data = examRepository.findById(examId);
+		 if(data.isPresent()) {
+			 Exam exam = data.get();
+			 return exam.getQuestions();
+		 }
+		 return null;
 	}
 }

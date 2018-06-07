@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -68,4 +69,25 @@ public class WidgetService {
 	{
 		return (List<Widget>) widgetRepository.findAll();
 	}
+	
+	@GetMapping("/api/widget/{widgetId}")
+	public Widget getWidget(@PathVariable("widgetId") int widgetId) {
+		Optional<Widget> data = widgetRepository.findById(widgetId);
+		if(data.isPresent()) {
+			Widget widget = data.get();
+			return widget;
+		}
+		return null;
+	}
+	
+	@PutMapping("/api/widget/{widgetId}")
+	public Widget updateWidget(@PathVariable("widgetId") int widgetId,@RequestBody Widget newWidget) {
+		Optional<Widget> data= widgetRepository.findById(widgetId);
+		if(data.isPresent()) {
+			Widget widget = data.get();
+			return widgetRepository.save(widget);
+		}
+		return null;
+	}
+	
 }

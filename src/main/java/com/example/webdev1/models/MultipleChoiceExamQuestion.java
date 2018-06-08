@@ -1,10 +1,8 @@
 package com.example.webdev1.models;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "MULTIPLE_CHOICE_QUESTION")
 public class MultipleChoiceExamQuestion
 	extends BaseExamQuestion {
 

@@ -1,15 +1,13 @@
 package com.example.webdev1.models;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "FILL_IN_THE_BLANKS_QUESTION")
 public class FillInTheBlanksExamQuestion
 	extends BaseExamQuestion {
 
 	private String variables;
-	private String values;
+	private String answers;
 	
 	public String getVariables() {
 		return variables;
@@ -17,10 +15,10 @@ public class FillInTheBlanksExamQuestion
 	public void setVariables(String variables) {
 		this.variables = variables;
 	}
-	public String getValues() {
-		return values;
+	public String getAnswers() {
+		return answers;
 	}
-	public void setValues(String values) {
-		this.values = values;
+	public void setAnswers(String answers) {
+		this.answers = answers;
 	}
 }

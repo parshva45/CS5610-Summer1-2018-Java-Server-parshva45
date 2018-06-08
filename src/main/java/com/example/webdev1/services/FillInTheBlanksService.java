@@ -46,7 +46,7 @@ public class FillInTheBlanksService {
 			fib.setDescription(newFib.getDescription());
 			fib.setPoints(newFib.getPoints());
 			fib.setVariables(newFib.getVariables());
-			fib.setValues(newFib.getValues());
+			fib.setAnswers(newFib.getAnswers());
 			fibRepository.save(fib);
 			return fib;
 		}

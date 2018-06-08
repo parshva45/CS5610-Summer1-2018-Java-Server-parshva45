@@ -23,7 +23,7 @@ public class MultipleChoiceService {
 	@Autowired
 	private MultipleChoiceExamQuestionRepository multipleChoiceRepository;
 	
-	@PostMapping("/api/exam/{examId}/multiplechoice")
+	@PostMapping("/api/exam/{examId}/choice")
 	public MultipleChoiceExamQuestion addQuestionByExamId(@PathVariable("examId") int examId,
 			@RequestBody MultipleChoiceExamQuestion mcq) {
 		Optional<Exam> data=examRepository.findById(examId);
@@ -35,7 +35,7 @@ public class MultipleChoiceService {
 		return null;
 	}
 	
-	@PutMapping("/api/question/{questionId}/multiplechoice")
+	@PutMapping("/api/question/{questionId}/choice")
 	public MultipleChoiceExamQuestion updateQuestion(@PathVariable("questionId") int questionId,
 			@RequestBody MultipleChoiceExamQuestion newMCQ) {
 		Optional<MultipleChoiceExamQuestion> data = multipleChoiceRepository.findById(questionId);

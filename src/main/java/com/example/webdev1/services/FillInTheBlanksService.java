@@ -23,7 +23,7 @@ public class FillInTheBlanksService {
 	@Autowired
 	private FillInTheBlanksExamQuestionRepository fibRepository;
 	
-	@PostMapping("/api/exam/{examId}/fillintheblanks")
+	@PostMapping("/api/exam/{examId}/blanks")
 	public FillInTheBlanksExamQuestion addQuestionByExamId(@PathVariable("examId") int examId,
 			@RequestBody FillInTheBlanksExamQuestion fib) {
 		 Optional<Exam> data = examRepository.findById(examId);
@@ -35,7 +35,7 @@ public class FillInTheBlanksService {
 		return null;
 	}
 	
-	@PutMapping("/api/question/{questionId}/fillintheblanks")
+	@PutMapping("/api/question/{questionId}/blanks")
 	public FillInTheBlanksExamQuestion updateQuestion(@PathVariable("questionId") int questionId,
 			@RequestBody FillInTheBlanksExamQuestion newFib) {
 		Optional<FillInTheBlanksExamQuestion> data = fibRepository.findById(questionId);
